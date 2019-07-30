@@ -8,10 +8,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'u1bj!9%vy8kbs0()(lj#0+6z*jex@e&vt#^ixfmyhv2xc4%t42'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY', 'u1bj!9%vy8kbs0()(lj#0+6z*jex@e&vt#^ixfmyhv2xc4%t42')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 ALLOWED_HOSTS = []
 
@@ -52,7 +53,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media' #media파일 사용시 사용
+                'django.template.context_processors.media'  # media파일 사용시 사용
             ],
         },
     },
